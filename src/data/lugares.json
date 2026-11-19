@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nombre": "Lugar de ejemplo 1",
+    "categoria": "Naturaleza",
+    "ciudad": "Ciudad de ejemplo",
+    "descripcion": "Descripción de ejemplo de 2 a 4 líneas. Reemplazar por datos reales.",
+    "imagen": "https://picsum.photos/id/1018/800/600",
+    "latitud": -12.0464,
+    "longitud": -77.0428,
+    "horario": "8:00 - 18:00"
+  },
+  {
+    "id": 2,
+    "nombre": "Lugar de ejemplo 2",
+    "categoria": "Historia",
+    "ciudad": "Ciudad de ejemplo",
+    "descripcion": "Segunda descripción de ejemplo. Reemplazar por datos reales.",
+    "imagen": "https://picsum.photos/id/1015/800/600",
+    "latitud": -12.0531,
+    "longitud": -77.0365
+  }
+]
