@@ -1,0 +1,55 @@
+Remote photos currently used by src/data/lugares.json
+
+Plaza Mayor de Huamanga
+Photo by Johnattan Rupire:
+https://commons.wikimedia.org/wiki/File:Plaza_de_armas_de_Huamanga_1.jpg
+License: CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
+
+catedral-ayacucho.jpg
+Photo by Guillermo Arevalo Aucahuasi:
+https://commons.wikimedia.org/wiki/File:Ayacucho_Cathedral.jpg
+License: CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0/
+
+pampa-ayacucho.jpg
+Photo by Christian Mehlfuhrer:
+https://commons.wikimedia.org/wiki/File:Obelisk_Battle_of_Ayacucho_and_Sucre_MC.jpg
+License: CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0/
+
+complejo-wari.jpg
+Photo by Madeleine Price Ball:
+https://commons.wikimedia.org/wiki/File:Tomb_at_Wari_ruins_near_Ayacucho.jpg
+License: CC BY-SA 2.0 https://creativecommons.org/licenses/by-sa/2.0/
+
+vilcashuaman.jpg
+Photo by Marco Antonio Ochante Martinez:
+https://commons.wikimedia.org/wiki/File:Vilcashuam%C3%A1n_-_Ayacucho_-_Per%C3%BA.jpg
+License: CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
+
+Bosque de Puyas Raimondi
+Photo by Pepe Roque:
+https://commons.wikimedia.org/wiki/File:Puya_raimondii_h%C3%A1bito.jpg
+License: CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0/
+
+Millpu
+Photo by Grupotres21:
+https://commons.wikimedia.org/wiki/File:Aguas_Turquesas_de_Millpu.jpg
+License: CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
+
+Mercado Andrés F. Vivanco
+Photo by Eduardo Zambrano:
+https://commons.wikimedia.org/wiki/File:Mercado_(vivanco).jpg
+License: CC BY 2.0 https://creativecommons.org/licenses/by/2.0/
+
+Local photo files retained in this folder but not currently loaded by the app
+
+plaza-mayor.jpg
+Photo by Alexey Topolyanskiy: https://unsplash.com/photos/-oWyJoSqBRM
+Source: Lorem Picsum image 1015 (Unsplash License).
+
+millpu.jpg
+Photo by Philippe Wuyts: https://unsplash.com/photos/_h7aBovKia4
+Source: Lorem Picsum image 1016 (Unsplash License).
+
+mercado-vivanco.jpg
+Photo by Andrew Ridley: https://unsplash.com/photos/Kt5hRENuotI
+Source: Lorem Picsum image 1018 (Unsplash License).

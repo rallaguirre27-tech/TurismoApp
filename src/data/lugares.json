@@ -1,23 +1,82 @@
 [
   {
     "id": 1,
-    "nombre": "Lugar de ejemplo 1",
-    "categoria": "Naturaleza",
-    "ciudad": "Ciudad de ejemplo",
-    "descripcion": "Descripción de ejemplo de 2 a 4 líneas. Reemplazar por datos reales.",
-    "imagen": "https://picsum.photos/id/1018/800/600",
-    "latitud": -12.0464,
-    "longitud": -77.0428,
-    "horario": "8:00 - 18:00"
+    "nombre": "Plaza Mayor de Huamanga",
+    "categoria": "Cultura",
+    "ciudad": "Ayacucho",
+    "descripcion": "Corazón de la ciudad, rodeado de casonas de los siglos XVI y XVII con portales de arcos y techos de teja. Aquí están la Catedral, la Iglesia de San Agustín y el monumento al mariscal Sucre. Es el mejor punto de partida para recorrer el centro histórico a pie.",
+    "imagen": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Plaza_de_armas_de_Huamanga_1.jpg/960px-Plaza_de_armas_de_Huamanga_1.jpg",
+    "latitud": -13.1605,
+    "longitud": -74.2255
   },
   {
     "id": 2,
-    "nombre": "Lugar de ejemplo 2",
+    "nombre": "Catedral de Ayacucho",
+    "categoria": "Cultura",
+    "ciudad": "Ayacucho",
+    "descripcion": "Basílica barroca construida entre 1632 y 1672 en el lado este de la Plaza Mayor. Su fachada combina piedra rosada y gris, y su interior es de estilo churrigueresco. Es el templo principal de la ciudad y Patrimonio Cultural de la Nación.",
+    "imagen": "https://en.wikipedia.org/wiki/Special:FilePath/Ayacucho_Cathedral.jpg?width=800",
+    "latitud": -13.1606,
+    "longitud": -74.2247
+  },
+  {
+    "id": 3,
+    "nombre": "Santuario Histórico Pampa de Ayacucho",
     "categoria": "Historia",
-    "ciudad": "Ciudad de ejemplo",
-    "descripcion": "Segunda descripción de ejemplo. Reemplazar por datos reales.",
-    "imagen": "https://picsum.photos/id/1015/800/600",
-    "latitud": -12.0531,
-    "longitud": -77.0365
+    "ciudad": "Quinua, Huamanga",
+    "descripcion": "Campo donde se libró la Batalla de Ayacucho en 1824, que selló la independencia de América del Sur. Cerca del pueblo de Quinua se levanta un obelisco en memoria de los héroes. Es área protegida desde 1980.",
+    "imagen": "https://en.wikipedia.org/wiki/Special:FilePath/Obelisk_Battle_of_Ayacucho_and_Sucre_MC.jpg?width=800",
+    "latitud": -13.04278,
+    "longitud": -74.13083
+  },
+  {
+    "id": 4,
+    "nombre": "Complejo Arqueológico Wari",
+    "categoria": "Historia",
+    "ciudad": "Huamanga, Ayacucho",
+    "descripcion": "Capital del Imperio Wari, una de las mayores ciudades del antiguo Perú, que floreció entre los años 550 y 1000 d. C. Conserva barrios con muros de piedra, recintos y tumbas. Está a unos 22 km al noreste de la ciudad de Ayacucho.",
+    "imagen": "https://en.wikipedia.org/wiki/Special:FilePath/Tomb_at_Wari_ruins_near_Ayacucho.jpg?width=800",
+    "latitud": -13.06056,
+    "longitud": -74.19889
+  },
+  {
+    "id": 5,
+    "nombre": "Vilcashuamán",
+    "categoria": "Historia",
+    "ciudad": "Vilcas Huamán, Ayacucho",
+    "descripcion": "Antiguo centro administrativo inca con el Templo del Sol y el Ushnu, una pirámide truncada con el famoso Asiento del Inca. Se cree que la ciudad fue trazada con forma de halcón. Se visita en una excursión de día completo desde Ayacucho.",
+    "imagen": "https://es.wikipedia.org/wiki/Especial:FilePath/Vilcashuam%C3%A1n_-_Ayacucho_-_Per%C3%BA.jpg?width=800",
+    "latitud": -13.65311,
+    "longitud": -73.95396
+  },
+  {
+    "id": 6,
+    "nombre": "Bosque de Puyas Raimondi de Titankayocc",
+    "categoria": "Naturaleza",
+    "ciudad": "Vischongo, Vilcas Huamán",
+    "descripcion": "Uno de los hábitats más importantes de la puya de Raimondi, la planta gigante de los Andes que florece una sola vez en su vida. Está entre los 3250 y 4250 metros de altura y es Área de Conservación Regional desde 2010.",
+    "imagen": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/Puya_raimondii_h%C3%A1bito.jpg/960px-Puya_raimondii_h%C3%A1bito.jpg",
+    "latitud": -13.55639,
+    "longitud": -73.98222
+  },
+  {
+    "id": 7,
+    "nombre": "Aguas Turquesas de Millpu",
+    "categoria": "Aventura",
+    "ciudad": "Circamarca, Huancaraylla",
+    "descripcion": "Serie de pozas naturales de agua turquesa entre paredes de roca, formadas por un río que baja en escalones. Se llega desde Circamarca tras una caminata de 20 a 30 minutos. Lleva traje de baño y ropa de cambio: el agua es muy fría.",
+    "imagen": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Aguas_Turquesas_de_Millpu.jpg/960px-Aguas_Turquesas_de_Millpu.jpg",
+    "latitud": -13.7522,
+    "longitud": -74.1341
+  },
+  {
+    "id": 8,
+    "nombre": "Mercado Andrés F. Vivanco",
+    "categoria": "Gastronomía",
+    "ciudad": "Ayacucho",
+    "descripcion": "Mercado central de la ciudad, detrás del Arco del Triunfo, donde se compran productos frescos y se prueban platos típicos ayacuchanos como el puka picante, el mondongo y el muyuchi, un helado artesanal.",
+    "imagen": "https://upload.wikimedia.org/wikipedia/commons/7/78/Mercado_%28vivanco%29.jpg",
+    "latitud": -13.162,
+    "longitud": -74.2243
   }
 ]
