@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "nombre": "Ruta corta (ejemplo)",
+    "descripcion": "EJEMPLO: recorrido breve a pie por 2 atractivos.",
+    "duracionMin": 60,
+    "paradas": [1, 2],
+    "premium": false
+  },
+  {
+    "id": 2,
+    "nombre": "Ruta completa (ejemplo)",
+    "descripcion": "EJEMPLO: recorrido extendido por 3 atractivos. Contenido premium.",
+    "duracionMin": 180,
+    "paradas": [1, 2, 3],
+    "premium": true
+  }
+]

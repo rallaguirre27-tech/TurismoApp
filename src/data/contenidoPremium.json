@@ -1,0 +1,19 @@
+[
+  {
+    "id": "ruta-2",
+    "tipo": "ruta",
+    "titulo": "Ruta completa (ejemplo)",
+    "descripcion": "EJEMPLO: desbloquea la ruta extendida con sus 3 paradas.",
+    "precio": 2.0,
+    "rutaId": 2
+  },
+  {
+    "id": "audio-1",
+    "tipo": "audioguia",
+    "titulo": "Audioguía del atractivo 1 (ejemplo)",
+    "descripcion": "EJEMPLO: audioguía narrada del atractivo 1.",
+    "precio": 2.0,
+    "lugarId": 1,
+    "audioUrl": ""
+  }
+]

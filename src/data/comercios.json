@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nombre": "Restaurante de ejemplo",
+    "tipo": "Restaurante",
+    "descripcion": "EJEMPLO: comida típica ayacuchana. Reemplazar por datos reales.",
+    "direccion": "EJEMPLO: Jr. Ejemplo 123, Huamanga",
+    "telefono": "+51 900 000 000",
+    "whatsapp": "51900000000",
+    "horario": "11:00 - 22:00",
+    "imagen": "https://picsum.photos/id/292/800/600",
+    "latitud": -13.1583,
+    "longitud": -74.2241
+  },
+  {
+    "id": 2,
+    "nombre": "Taller artesanal de ejemplo",
+    "tipo": "Taller artesanal",
+    "descripcion": "EJEMPLO: taller de artesanía local. Reemplazar por datos reales.",
+    "direccion": "EJEMPLO: Barrio Ejemplo, Huamanga",
+    "horario": "9:00 - 18:00",
+    "imagen": "https://picsum.photos/id/1060/800/600",
+    "latitud": -13.1601,
+    "longitud": -74.2229
+  }
+]

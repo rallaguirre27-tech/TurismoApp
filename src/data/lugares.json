@@ -1,23 +1,41 @@
 [
   {
     "id": 1,
-    "nombre": "Lugar de ejemplo 1",
-    "categoria": "Naturaleza",
-    "ciudad": "Ciudad de ejemplo",
-    "descripcion": "Descripción de ejemplo de 2 a 4 líneas. Reemplazar por datos reales.",
+    "nombre": "Atractivo de ejemplo 1",
+    "categoria": "Historia",
+    "ciudad": "Huamanga",
+    "descripcion": "EJEMPLO: resumen corto del atractivo. Reemplazar por datos reales.",
+    "historia": "EJEMPLO: texto más largo con la historia y el valor cultural del lugar. Reemplazar por datos reales.",
+    "recomendaciones": ["EJEMPLO: ir temprano", "EJEMPLO: llevar efectivo"],
     "imagen": "https://picsum.photos/id/1018/800/600",
-    "latitud": -12.0464,
-    "longitud": -77.0428,
+    "latitud": -13.1588,
+    "longitud": -74.2236,
     "horario": "8:00 - 18:00"
   },
   {
     "id": 2,
-    "nombre": "Lugar de ejemplo 2",
-    "categoria": "Historia",
-    "ciudad": "Ciudad de ejemplo",
-    "descripcion": "Segunda descripción de ejemplo. Reemplazar por datos reales.",
+    "nombre": "Atractivo de ejemplo 2",
+    "categoria": "Cultura",
+    "ciudad": "Huamanga",
+    "descripcion": "EJEMPLO: segundo atractivo. Reemplazar por datos reales.",
+    "historia": "EJEMPLO: historia del segundo atractivo. Reemplazar por datos reales.",
+    "recomendaciones": ["EJEMPLO: visitar por la tarde"],
     "imagen": "https://picsum.photos/id/1015/800/600",
-    "latitud": -12.0531,
-    "longitud": -77.0365
+    "latitud": -13.1592,
+    "longitud": -74.2247,
+    "horario": "9:00 - 17:00"
+  },
+  {
+    "id": 3,
+    "nombre": "Atractivo de ejemplo 3",
+    "categoria": "Naturaleza",
+    "ciudad": "Huamanga",
+    "descripcion": "EJEMPLO: tercer atractivo. Reemplazar por datos reales.",
+    "historia": "EJEMPLO: historia del tercer atractivo. Reemplazar por datos reales.",
+    "recomendaciones": ["EJEMPLO: llevar agua"],
+    "imagen": "https://picsum.photos/id/1016/800/600",
+    "latitud": -13.1575,
+    "longitud": -74.2218,
+    "horario": "Abierto todo el día"
   }
 ]

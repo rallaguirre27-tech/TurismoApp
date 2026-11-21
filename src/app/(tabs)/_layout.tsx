@@ -21,19 +21,28 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="favoritos"
-        options={{
-          title: 'Favoritos',
-          tabBarIcon: ({ color, size }) => <Ionicons name="heart" size={size} color={color} />,
-        }}
-      />
-      <Tabs.Screen
         name="mapa"
         options={{
           title: 'Mapa',
           tabBarIcon: ({ color, size }) => <Ionicons name="map" size={size} color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="comercios"
+        options={{
+          title: 'Comercios',
+          tabBarIcon: ({ color, size }) => <Ionicons name="storefront" size={size} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="descargas"
+        options={{
+          title: 'Descargas',
+          tabBarIcon: ({ color, size }) => <Ionicons name="download" size={size} color={color} />,
+        }}
+      />
+      {/* Favoritos no es parte de las 5 historias: queda oculta, sin pestaña. */}
+      <Tabs.Screen name="favoritos" options={{ href: null }} />
     </Tabs>
   );
 }
