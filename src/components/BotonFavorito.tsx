@@ -1,6 +1,6 @@
 
 import { Pressable, StyleSheet, Text } from 'react-native';
-import { useFavoritos } from '../context/FavoritosContext';
+import { useFavoritos } from '../context/FavoritosContext'; 
 
 type Props = {
   id: number;
