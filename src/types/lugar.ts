@@ -10,15 +10,13 @@ export interface Lugar {
   nombre: string;
   categoria: Categoria;
   ciudad: string;
-  /** Resumen corto (1 o 2 líneas), para las tarjetas */
   descripcion: string;
-  /** Historia y valor cultural del lugar */
-  historia: string;
-  /** Consejos para el visitante */
-  recomendaciones: string[];
-  /** URL de la foto (https://...) */
+  
+  /** URL de la foto (https://portal.andina.pe/EDPfotografia3/Thumbnail/2024/04/24/001058672W.webp) */
   imagen: string;
+  /** URLs adicionales para la galería del detalle */
+  galeria?: string[];
   latitud: number;
   longitud: number;
-  horario: string;
+  horario?: string;
 }

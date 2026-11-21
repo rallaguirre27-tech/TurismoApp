@@ -5,7 +5,12 @@
     "categoria": "Historia",
     "ciudad": "Quinua, Huamanga",
     "descripcion": "Capital del Primer Imperio Andino (600–1100 d.C.), destaca por sus murallas de piedra de hasta 12 metros, galerías subterráneas y templos ceremoniales. Se recomienda llevar bloqueador solar, sombrero y agua para recorrer el museo y los sectores de Vegachayoc Moqo y Monqachayoc.",
-    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Wari_Ayacucho.jpg/800px-Wari_Ayacucho.jpg",
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdW-eXq5ZXWVTM7Eoy_kSCg51lXZ3YAIv83Un8bUYLixvs8a2TsbMf9m4&s=10",
+    "galeria": [
+      "https://es.123peru.com/wp-content/uploads/sites/2/templo-de-la-luna-museo-y-complejo-arqueologico-wari-quinua-ayacucho-peru-1.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/f/f3/Tomb_at_Wari_ruins_near_Ayacucho.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=original",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6p3i-05Gjg2UQcprQ_CylmNtK8l95Z4WiHN-dLmMDqc7amwqcZSRhVQ8&s=10"
+    ],
     "latitud": -13.0615,
     "longitud": -74.2054,
     "horario": "08:30 - 17:00 (Martes a Domingo)"
@@ -16,7 +21,12 @@
     "categoria": "Historia",
     "ciudad": "Quinua, Huamanga",
     "descripcion": "Escenario de la histórica Batalla de Ayacucho del 9 de diciembre de 1824 que selló la independencia de América del Sur, coronado por su imponente obelisco de 44 metros de altura. Ideal para visitar junto al pueblo artesanal de Quinua y llevar abrigo por el viento de puna.",
-    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Obelisco_de_la_Pampa_de_Ayacucho.jpg/800px-Obelisco_de_la_Pampa_de_Ayacucho.jpg",
+    "imagen": "https://huancaraylla.com.pe/wp-content/uploads/2022/05/000336208W-1-1.jpg",
+    "galeria": [
+      "https://viajerotours.com/wp-content/uploads/Tour_a_Wari_y_Pampa_de_la_Quinua_2.webp",
+      "https://huancaraylla.com.pe/wp-content/uploads/2022/05/000227066W-1600x1200.jpg",
+      "https://huancaraylla.com.pe/wp-content/uploads/2022/05/Pampa-de-Ayacucho.jpg"
+    ],
     "latitud": -13.0428,
     "longitud": -74.1322,
     "horario": "08:00 - 17:30"
@@ -27,7 +37,12 @@
     "categoria": "Naturaleza",
     "ciudad": "Circamarca, Víctor Fajardo",
     "descripcion": "Impresionante conjunto de más de 20 piscinas naturales escalonadas de color turquesa y esmeralda alimentadas por el deshielo en un cañón rocoso. Se recomienda visitar en temporada seca (mayo a octubre) para apreciar su color intenso y usar calzado de trekking antideslizante.",
-    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Aguas_Turquesas_de_Millpu%2C_Ayacucho.jpg/800px-Aguas_Turquesas_de_Millpu%2C_Ayacucho.jpg",
+    "imagen": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/f5/12/fa/caption.jpg?w=674&h=446&s=1",
+    "galeria": [
+      "https://huancaraylla.com.pe/wp-content/uploads/2022/05/millpu-ayacucho-1.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3anb_4FX2qX5IaMbTQeA8kuJRW_si9hoPT57HXSfxjasJFtKDGO--Niwg&s=10",
+      "https://infoayacucho.com/wp-content/uploads/2024/09/quien-protege-las-aguas-de-millpu-1024x576.jpg"
+    ],
     "latitud": -13.6589,
     "longitud": -74.2886,
     "horario": "07:00 - 16:00"
@@ -38,7 +53,12 @@
     "categoria": "Naturaleza",
     "ciudad": "Vischongo, Vilcashuamán",
     "descripcion": "Área de Conservación Regional que alberga el rodal más extenso del mundo de Puya raimondii, la bromelia gigante de los Andes que florece una sola vez tras casi 100 años alcanzando hasta 12 metros. Se sugiere visitar temprano en la mañana con ropa abrigadora.",
-    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Puya_raimondii_Titankayocc.jpg/800px-Puya_raimondii_Titankayocc.jpg",
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToc3B38mIt4uzFNdGhfXH2ddt-QZsmUjDr8AUZHjnE8_PlmAnxn-4HOjg&s=10",
+    "galeria": [
+      "https://huancaraylla.com.pe/wp-content/uploads/2022/05/vischongo.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqOEPSxsOHjN2Gge11gkzx5ydnn0p98Xky-zlhGUAx5yvNJnghGFo12iXX&s=10",
+      "https://elcomercio.pe/resizer/RZvK9lzAXdwoDZvibjc3Zo-kK5E=/1200x675/smart/filters:format(jpeg):quality(75)/arc-anglerfish-arc2-prod-elcomercio.s3.amazonaws.com/public/IVJEEA2WTRFEZM5JEIDG2QF7NU.jpg"
+    ],
     "latitud": -13.5625,
     "longitud": -73.9814,
     "horario": "07:30 - 17:00"

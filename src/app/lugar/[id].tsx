@@ -1,4 +1,5 @@
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { AudioguiaPremium } from '../../components/AudioguiaPremium';
@@ -10,6 +11,26 @@ export default function DetalleLugarScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const lugar = obtenerLugarPorId(Number(id));
+  const [indiceFoto, setIndiceFoto] = useState(0);
+
+  const fotosExtras =
+    lugar?.galeria && lugar.galeria.length > 0
+      ? lugar.galeria
+      : lugar
+      ? [lugar.imagen]
+      : [];
+
+  useEffect(() => {
+    setIndiceFoto(0);
+  }, [id]);
+
+  useEffect(() => {
+    if (fotosExtras.length <= 1) return;
+    const intervalo = setInterval(() => {
+      setIndiceFoto((prev) => (prev + 1) % fotosExtras.length);
+    }, 3000);
+    return () => clearInterval(intervalo);
+  }, [fotosExtras.length]);
 
   if (!lugar) {
     return (
@@ -27,7 +48,33 @@ export default function DetalleLugarScreen() {
     <ScrollView style={styles.contenedor} contentContainerStyle={styles.contenidoScroll}>
       <Stack.Screen options={{ title: lugar.nombre }} />
 
-      <Image source={{ uri: lugar.imagen }} style={styles.imagenGrande} resizeMode="cover" />
+      <View style={styles.contenedorGaleria}>
+        <Image
+          source={{ uri: fotosExtras[indiceFoto] }}
+          style={styles.imagenGrande}
+          resizeMode="cover"
+        />
+
+        {fotosExtras.length > 1 ? (
+          <View style={styles.barraGaleria}>
+            <Text style={styles.contadorFotos}>
+              Foto {indiceFoto + 1} de {fotosExtras.length}
+            </Text>
+            <View style={styles.indicadores}>
+              {fotosExtras.map((_, idx) => (
+                <Pressable
+                  key={idx}
+                  onPress={() => setIndiceFoto(idx)}
+                  style={[
+                    styles.punto,
+                    indiceFoto === idx && styles.puntoActivo,
+                  ]}
+                />
+              ))}
+            </View>
+          </View>
+        ) : null}
+      </View>
 
       <View style={styles.cuerpo}>
         <View style={styles.filaMeta}>
@@ -110,10 +157,49 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 15,
   },
+  contenedorGaleria: {
+    position: 'relative',
+    backgroundColor: Colores.borde,
+  },
   imagenGrande: {
     width: '100%',
     height: 250,
-    backgroundColor: Colores.borde,
+  },
+  barraGaleria: {
+    position: 'absolute',
+    bottom: 10,
+    left: 14,
+    right: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  contadorFotos: {
+    backgroundColor: 'rgba(0, 0, 0, 0.55)',
+    color: '#FFFFFF',
+    fontSize: 12,
+    fontWeight: '600',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 10,
+  },
+  indicadores: {
+    flexDirection: 'row',
+    gap: 6,
+    backgroundColor: 'rgba(0, 0, 0, 0.45)',
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 12,
+  },
+  punto: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+  },
+  puntoActivo: {
+    backgroundColor: '#FFFFFF',
+    width: 16,
   },
   cuerpo: {
     padding: 18,

@@ -1,7 +1,8 @@
 import { useRouter } from 'expo-router';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   FlatList,
+  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -24,10 +25,25 @@ const CATEGORIAS: ('Todas' | Categoria)[] = [
   'Aventura',
 ];
 
+const IMAGENES_BANNER_AYACUCHO = [
+  'https://portal.andina.pe/EDPfotografia3/Thumbnail/2024/04/24/001058672W.webp',
+  'https://images.trvl-media.com/place/6116980/c31aafd0-930b-4a25-954d-6565a8f89b4a.jpg',
+  'https://comunicaciones.congreso.gob.pe/wpuploads/2025/03/post-de-corredor-turistico-de-ayacucho.jpg',
+  'https://larepublica.cronosmedia.glr.pe/original/2019/03/20/60563f5cd806221c2f1555d8.jpg',
+];
+
 export default function InicioScreen() {
   const router = useRouter();
   const [busqueda, setBusqueda] = useState('');
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<'Todas' | Categoria>('Todas');
+  const [indiceBanner, setIndiceBanner] = useState(0);
+
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      setIndiceBanner((prev) => (prev + 1) % IMAGENES_BANNER_AYACUCHO.length);
+    }, 3500);
+    return () => clearInterval(intervalo);
+  }, []);
 
   const lugaresFiltrados = useMemo(() => {
     return lugares.filter((lugar) => {
@@ -44,45 +60,71 @@ export default function InicioScreen() {
 
   return (
     <View style={styles.contenedor}>
-      <View style={styles.encabezado}>
-        <Text style={styles.titulo}>Descubre Ayacucho</Text>
-        <Text style={styles.subtitulo}>
-          Explora los principales atractivos históricos y naturales
-        </Text>
-
-        <TextInput
-          style={styles.buscador}
-          placeholder="Buscar atractivo o distrito..."
-          placeholderTextColor={Colores.textoSuave}
-          value={busqueda}
-          onChangeText={setBusqueda}
-        />
-
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.listaCategorias}
-        >
-          {CATEGORIAS.map((cat) => {
-            const activa = categoriaSeleccionada === cat;
-            return (
-              <Pressable
-                key={cat}
-                onPress={() => setCategoriaSeleccionada(cat)}
-                style={[styles.chipCategoria, activa && styles.chipCategoriaActiva]}
-              >
-                <Text style={[styles.textoChip, activa && styles.textoChipActiva]}>{cat}</Text>
-              </Pressable>
-            );
-          })}
-        </ScrollView>
-      </View>
-
       <FlatList
         data={lugaresFiltrados}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.listaContenido}
         showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          <View style={styles.encabezado}>
+            <View style={styles.contenedorBanner}>
+              <Image
+                source={{ uri: IMAGENES_BANNER_AYACUCHO[indiceBanner] }}
+                style={styles.bannerPlaza}
+                resizeMode="cover"
+              />
+              <View style={styles.pieBanner}>
+                <View style={styles.etiquetaBanner}>
+                  <Text style={styles.textoBanner}>Plaza Mayor • Huamanga, Ayacucho</Text>
+                </View>
+                <View style={styles.indicadores}>
+                  {IMAGENES_BANNER_AYACUCHO.map((_, idx) => (
+                    <Pressable
+                      key={idx}
+                      onPress={() => setIndiceBanner(idx)}
+                      style={[
+                        styles.punto,
+                        indiceBanner === idx && styles.puntoActivo,
+                      ]}
+                    />
+                  ))}
+                </View>
+              </View>
+            </View>
+
+            <Text style={styles.titulo}>Descubre Ayacucho</Text>
+            <Text style={styles.subtitulo}>
+              Explora los principales atractivos históricos y naturales
+            </Text>
+
+            <TextInput
+              style={styles.buscador}
+              placeholder="Buscar atractivo o distrito..."
+              placeholderTextColor={Colores.textoSuave}
+              value={busqueda}
+              onChangeText={setBusqueda}
+            />
+
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.listaCategorias}
+            >
+              {CATEGORIAS.map((cat) => {
+                const activa = categoriaSeleccionada === cat;
+                return (
+                  <Pressable
+                    key={cat}
+                    onPress={() => setCategoriaSeleccionada(cat)}
+                    style={[styles.chipCategoria, activa && styles.chipCategoriaActiva]}
+                  >
+                    <Text style={[styles.textoChip, activa && styles.textoChipActiva]}>{cat}</Text>
+                  </Pressable>
+                );
+              })}
+            </ScrollView>
+          </View>
+        }
         renderItem={({ item }) => (
           <LugarCard
             lugar={item}
@@ -106,11 +148,61 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colores.fondo,
   },
+  listaContenido: {
+    padding: 16,
+  },
   encabezado: {
-    paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 8,
-    backgroundColor: Colores.fondo,
+    marginBottom: 14,
+  },
+  contenedorBanner: {
+    position: 'relative',
+    borderRadius: 14,
+    overflow: 'hidden',
+    marginBottom: 14,
+    backgroundColor: Colores.borde,
+    elevation: 2,
+  },
+  bannerPlaza: {
+    width: '100%',
+    height: 165,
+  },
+  pieBanner: {
+    position: 'absolute',
+    bottom: 8,
+    left: 10,
+    right: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  etiquetaBanner: {
+    backgroundColor: 'rgba(14, 124, 134, 0.9)',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 8,
+  },
+  textoBanner: {
+    color: '#FFFFFF',
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  indicadores: {
+    flexDirection: 'row',
+    gap: 5,
+    backgroundColor: 'rgba(0, 0, 0, 0.35)',
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+    borderRadius: 12,
+  },
+  punto: {
+    width: 7,
+    height: 7,
+    borderRadius: 4,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+  },
+  puntoActivo: {
+    backgroundColor: '#FFFFFF',
+    width: 14,
   },
   titulo: {
     fontSize: 24,
@@ -157,10 +249,6 @@ const styles = StyleSheet.create({
   },
   textoChipActiva: {
     color: '#FFFFFF',
-  },
-  listaContenido: {
-    padding: 16,
-    paddingTop: 8,
   },
   vacio: {
     padding: 32,
