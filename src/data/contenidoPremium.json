@@ -3,17 +3,40 @@
     "id": "ruta-2",
     "tipo": "ruta",
     "titulo": "Ruta completa (ejemplo)",
-    "descripcion": "EJEMPLO: desbloquea la ruta extendida con sus 3 paradas.",
+    "descripcion": "Desbloquea la ruta extendida con sus 3 paradas.",
     "precio": 2.0,
     "rutaId": 2
   },
   {
     "id": "audio-1",
     "tipo": "audioguia",
-    "titulo": "Audioguía del atractivo 1 (ejemplo)",
-    "descripcion": "EJEMPLO: audioguía narrada del atractivo 1.",
+    "titulo": "Audioguía del Complejo Arqueológico Wari",
+    "descripcion": "Conoce la historia de la antigua cultura Wari.",
     "precio": 2.0,
-    "lugarId": 1,
-    "audioUrl": ""
+    "lugarId": 1
+  },
+  {
+    "id": "audio-2",
+    "tipo": "audioguia",
+    "titulo": "Audioguía de la Pampa de Ayacucho",
+    "descripcion": "Descubre el escenario de la Batalla de Ayacucho.",
+    "precio": 2.0,
+    "lugarId": 2
+  },
+  {
+    "id": "audio-3",
+    "tipo": "audioguia",
+    "titulo": "Audioguía de las Aguas Turquesas de Millpu",
+    "descripcion": "Conoce este maravilloso atractivo natural.",
+    "precio": 2.0,
+    "lugarId": 3
+  },
+  {
+    "id": "audio-4",
+    "tipo": "audioguia",
+    "titulo": "Audioguía del Bosque de Puyas de Raimondi",
+    "descripcion": "Descubre la riqueza natural de Titankayocc.",
+    "precio": 2.0,
+    "lugarId": 4
   }
 ]
