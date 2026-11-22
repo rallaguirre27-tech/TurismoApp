@@ -1,11 +1,10 @@
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 import { Directory, File, Paths } from 'expo-file-system';
 
 import { lugaresDeRuta } from '../data';
-import { Lugar } from '../types/lugar';
-import { Ruta } from '../types/ruta';
+import type { Lugar } from '../types/lugar';
+import type { Ruta } from '../types/ruta';
 
 const CLAVE_DESCARGAS = 'descargas';
 const CLAVE_DESBLOQUEADOS = 'desbloqueados';
@@ -24,22 +23,38 @@ export type ContenidoRutaDescargada = {
   descargadaEn: string;
 };
 
+// Obtener el directorio principal de las descargas.
 function obtenerDirectorioBase(): Directory {
-  return new Directory(Paths.document, DIRECTORIO_DESCARGAS);
+  return new Directory(
+    Paths.document,
+    DIRECTORIO_DESCARGAS
+  );
 }
 
+// Obtener el directorio correspondiente a una ruta.
 function obtenerDirectorioRuta(rutaId: number): Directory {
-  return new Directory(obtenerDirectorioBase(), `ruta-${rutaId}`);
+  return new Directory(
+    obtenerDirectorioBase(),
+    `ruta-${rutaId}`
+  );
 }
 
+// Obtener el archivo de información de una ruta.
 function obtenerArchivoDatos(rutaId: number): File {
-  return new File(obtenerDirectorioRuta(rutaId), 'datos.json');
+  return new File(
+    obtenerDirectorioRuta(rutaId),
+    'datos.json'
+  );
 }
 
 // Obtener una extensión válida para cada fotografía.
 function obtenerExtension(url: string): string {
   const urlSinParametros = url.split(/[?#]/)[0] ?? '';
-  const coincidencia = urlSinParametros.match(/\.([a-zA-Z0-9]+)$/);
+
+  const coincidencia = urlSinParametros.match(
+    /\.([a-zA-Z0-9]+)$/
+  );
+
   const extension = coincidencia?.[1]?.toLowerCase();
 
   const extensionesPermitidas = [
@@ -60,13 +75,22 @@ function obtenerExtension(url: string): string {
 async function validarDesbloqueo(ruta: Ruta): Promise<void> {
   if (!ruta.premium) return;
 
-  const valor = await AsyncStorage.getItem(CLAVE_DESBLOQUEADOS);
+  const valor = await AsyncStorage.getItem(
+    CLAVE_DESBLOQUEADOS
+  );
 
-  let desbloqueados: unknown = [];
+  let desbloqueados: string[] = [];
 
   try {
     if (valor) {
-      desbloqueados = JSON.parse(valor);
+      const datos: unknown = JSON.parse(valor);
+
+      if (
+        Array.isArray(datos) &&
+        datos.every((id) => typeof id === 'string')
+      ) {
+        desbloqueados = datos;
+      }
     }
   } catch {
     desbloqueados = [];
@@ -74,29 +98,87 @@ async function validarDesbloqueo(ruta: Ruta): Promise<void> {
 
   const identificador = `ruta-${ruta.id}`;
 
-  if (
-    !Array.isArray(desbloqueados) ||
-    !desbloqueados.includes(identificador)
-  ) {
+  if (!desbloqueados.includes(identificador)) {
     throw new Error(
       'Esta ruta premium debe desbloquearse antes de descargarla.'
     );
   }
 }
 
+// Limpiar parámetros de seguimiento de Wikimedia.
+function prepararUrlImagen(url: string): string {
+  if (url.includes('upload.wikimedia.org')) {
+    return url.split('?')[0];
+  }
+
+  return url;
+}
+
 // Descargar una fotografía y comprobar que se haya guardado.
 async function descargarImagen(
   url: string,
-  destino: File,
+  destino: File
 ): Promise<void> {
   if (!url || !/^https?:\/\//i.test(url)) {
-    throw new Error('La dirección de una fotografía no es válida.');
+    throw new Error(
+      'La dirección de una fotografía no es válida.'
+    );
   }
 
-  const archivo = await File.downloadFileAsync(url, destino);
+  const urlDescarga = prepararUrlImagen(url);
 
-  if (!archivo.exists) {
-    throw new Error('No se pudo guardar una fotografía de la ruta.');
+  // Cabeceras HTTP para solicitar contenido de imagen.
+  const headers: Record<string, string> = {
+    Accept: 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+  };
+
+  // Referer para miniaturas de Google.
+  if (urlDescarga.includes('gstatic.com')) {
+    headers.Referer = 'https://www.google.com/';
+  }
+
+  // Identificar la aplicación al solicitar imágenes de Wikimedia.
+  if (urlDescarga.includes('upload.wikimedia.org')) {
+    headers.Referer = 'https://es.wikipedia.org/';
+    headers['User-Agent'] = 'TurismoApp/1.0';
+  }
+
+  const tarea = File.createDownloadTask(
+    urlDescarga,
+    destino,
+    { headers }
+  );
+
+  try {
+    console.log(
+      '[HU-03] Descargando imagen:',
+      urlDescarga
+    );
+
+    const archivo = await tarea.downloadAsync();
+
+    if (!archivo || !archivo.exists) {
+      throw new Error(
+        'No se pudo guardar la fotografía.'
+      );
+    }
+
+    console.log(
+      '[HU-03] Imagen guardada:',
+      archivo.uri
+    );
+
+  } catch (error) {
+    console.error(
+      '[HU-03] Error al descargar esta imagen:',
+      urlDescarga,
+      error
+    );
+
+    throw error;
+
+  } finally {
+    tarea.release();
   }
 }
 
@@ -143,6 +225,7 @@ export async function listarDescargas(): Promise<number[]> {
     return directorio.exists && archivo.exists;
   });
 
+  // Limpiar registros que ya no tienen archivos locales.
   if (idsValidos.length !== ids.length) {
     try {
       await AsyncStorage.setItem(
@@ -150,7 +233,7 @@ export async function listarDescargas(): Promise<number[]> {
         JSON.stringify(idsValidos)
       );
     } catch {
-      // Se conservan los resultados válidos en memoria.
+      // No interrumpir la consulta por un error de almacenamiento.
     }
   }
 
@@ -163,7 +246,9 @@ export async function listarDescargas(): Promise<number[]> {
 export async function estaDescargada(
   rutaId: number
 ): Promise<boolean> {
-  if (!Number.isInteger(rutaId) || rutaId <= 0) return false;
+  if (!Number.isInteger(rutaId) || rutaId <= 0) {
+    return false;
+  }
 
   const ids = await listarDescargas();
 
@@ -173,13 +258,17 @@ export async function estaDescargada(
 /**
  * Descargar fichas, fotografías y coordenadas de una ruta.
  */
-export async function descargarRuta(ruta: Ruta): Promise<void> {
+export async function descargarRuta(
+  ruta: Ruta
+): Promise<void> {
 
   // Verificar primero el desbloqueo premium.
   await validarDesbloqueo(ruta);
 
   // Evitar descargar nuevamente una ruta ya guardada.
-  if (await estaDescargada(ruta.id)) return;
+  if (await estaDescargada(ruta.id)) {
+    return;
+  }
 
   // Comprobar conexión a Internet.
   const conexion = await NetInfo.fetch();
@@ -205,6 +294,7 @@ export async function descargarRuta(ruta: Ruta): Promise<void> {
     );
   }
 
+  // Crear el directorio principal.
   const directorioBase = obtenerDirectorioBase();
 
   directorioBase.create({
@@ -226,6 +316,7 @@ export async function descargarRuta(ruta: Ruta): Promise<void> {
     intermediates: true,
   });
 
+  // Crear carpeta temporal de imágenes.
   const imagenesTemporales = new Directory(
     directorioTemporal,
     'imagenes'
@@ -235,6 +326,7 @@ export async function descargarRuta(ruta: Ruta): Promise<void> {
     intermediates: true,
   });
 
+  // Preparar los directorios definitivos.
   const directorioFinal = obtenerDirectorioRuta(ruta.id);
 
   const imagenesFinales = new Directory(
@@ -250,7 +342,7 @@ export async function descargarRuta(ruta: Ruta): Promise<void> {
     // Descargar cada lugar perteneciente a la ruta.
     for (const lugar of lugaresRuta) {
 
-      // Fotografía principal.
+      // Descargar fotografía principal.
       const nombreImagen =
         `lugar-${lugar.id}-principal.${obtenerExtension(lugar.imagen)}`;
 
@@ -259,13 +351,15 @@ export async function descargarRuta(ruta: Ruta): Promise<void> {
         new File(imagenesTemporales, nombreImagen)
       );
 
+      // Preparar la ruta local definitiva.
       const imagenLocal = new File(
         imagenesFinales,
         nombreImagen
       ).uri;
 
-      // Fotografías adicionales de la galería.
+      // Descargar fotografías adicionales de la galería.
       const galeriaOriginal = lugar.galeria ?? [];
+
       const galeriaLocal: string[] = [];
 
       for (let i = 0; i < galeriaOriginal.length; i++) {
@@ -284,7 +378,7 @@ export async function descargarRuta(ruta: Ruta): Promise<void> {
         );
       }
 
-      // Guardar la ficha utilizando las rutas locales de las imágenes.
+      // Guardar la ficha utilizando las rutas locales.
       lugaresGuardados.push({
         ...lugar,
         imagen: imagenLocal,
@@ -315,12 +409,12 @@ export async function descargarRuta(ruta: Ruta): Promise<void> {
       JSON.stringify(contenido, null, 2)
     );
 
-    // Reemplazar la descarga anterior solamente cuando
-    // la nueva descarga esté completamente preparada.
+    // Reemplazar una carpeta anterior si existe.
     if (directorioFinal.exists) {
       directorioFinal.delete();
     }
 
+    // Mover la descarga temporal a su ubicación definitiva.
     await directorioTemporal.move(directorioFinal);
 
     directorioMovido = true;
@@ -337,6 +431,11 @@ export async function descargarRuta(ruta: Ruta): Promise<void> {
       JSON.stringify(nuevosIds)
     );
 
+    console.log(
+      '[HU-03] Ruta descargada correctamente:',
+      ruta.id
+    );
+
   } catch (error) {
 
     // Eliminar archivos incompletos si ocurre un error.
@@ -345,9 +444,13 @@ export async function descargarRuta(ruta: Ruta): Promise<void> {
         directorioTemporal.delete();
       }
 
-      if (directorioMovido && directorioFinal.exists) {
+      if (
+        directorioMovido &&
+        directorioFinal.exists
+      ) {
         directorioFinal.delete();
       }
+
     } catch {
       // Se conserva el error original.
     }
@@ -374,7 +477,10 @@ export async function obtenerContenidoDescargado(
   try {
     const contenido = await archivo.text();
 
-    return JSON.parse(contenido) as ContenidoRutaDescargada;
+    return JSON.parse(
+      contenido
+    ) as ContenidoRutaDescargada;
+
   } catch {
     return null;
   }
@@ -387,14 +493,20 @@ export async function eliminarDescarga(
   rutaId: number
 ): Promise<void> {
 
+  if (!Number.isInteger(rutaId) || rutaId <= 0) {
+    return;
+  }
+
   const ids = await listarDescargas();
 
+  // Eliminar directorio definitivo.
   const directorio = obtenerDirectorioRuta(rutaId);
 
   if (directorio.exists) {
     directorio.delete();
   }
 
+  // Eliminar también cualquier descarga temporal.
   const directorioTemporal = new Directory(
     obtenerDirectorioBase(),
     `ruta-${rutaId}-temporal`
@@ -404,10 +516,18 @@ export async function eliminarDescarga(
     directorioTemporal.delete();
   }
 
-  const nuevosIds = ids.filter((id) => id !== rutaId);
+  // Actualizar el registro de descargas.
+  const nuevosIds = ids.filter(
+    (id) => id !== rutaId
+  );
 
   await AsyncStorage.setItem(
     CLAVE_DESCARGAS,
     JSON.stringify(nuevosIds)
+  );
+
+  console.log(
+    '[HU-03] Descarga eliminada:',
+    rutaId
   );
 }
